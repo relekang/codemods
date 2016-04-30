@@ -7,5 +7,5 @@ actual usecases.
 ```
 npm i jscodeshift relekang/codemods
 
-jscodeshift -t ./node_modules/relekang/codemods/lib/codemod-name.js folder/
+rcm codemod-name path
 ```

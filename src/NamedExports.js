@@ -32,7 +32,7 @@ const replacers = {
   },
 };
 
-export default function transformer(file, api, options = {}) {
+module.exports = function transformer(file, api, options = {}) {
   const j = api.jscodeshift;
 
   return j(file.source)
@@ -42,4 +42,4 @@ export default function transformer(file, api, options = {}) {
         .map(p => replacers[p.value.type](j, p))
     )
     .toSource(options);
-}
+};
