@@ -37,6 +37,7 @@ module.exports = function transformer(file, api, options = {}) {
 
   return j(file.source)
     .find(j.ExportDefaultDeclaration)
+    .filter(n => n.value.declaration.type === 'ObjectExpression')
     .replaceWith(n =>
       n.value.declaration.properties
         .map(p => replacers[p.value.type](j, p))

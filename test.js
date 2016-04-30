@@ -8,7 +8,12 @@ import NamedExports from './src/NamedExports';
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
 
-export function generateTest(name, transform) {
+export function generateTest(transformName, transform, testName) {
+  let name = transformName;
+  if (testName) {
+    name = `${transformName}/${testName}`;
+  }
+
   return [name, async t => {
     const jscodeshift = require('jscodeshift'); // eslint-disable-line global-require
     const path = `${fixturesPath}/${name}.input.js`;
@@ -21,4 +26,5 @@ export function generateTest(name, transform) {
   }];
 }
 
-test(...generateTest('NamedExports', NamedExports));
+test(...generateTest('NamedExports', NamedExports, 'with-default-export'));
+test(...generateTest('NamedExports', NamedExports, 'default-export-function'));
