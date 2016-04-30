@@ -3,6 +3,7 @@ import fs from 'fs';
 import { join } from 'path';
 import Promise from 'bluebird';
 
+import NamedExports from './src/NamedExports';
 
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
@@ -19,3 +20,5 @@ export function generateTest(name, transform) {
     t.is(output, expected);
   }];
 }
+
+test(...generateTest('NamedExports', NamedExports));
