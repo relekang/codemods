@@ -2,11 +2,20 @@ import test from 'ava';
 import fs from 'fs';
 import { join } from 'path';
 import Promise from 'bluebird';
+import * as diff from 'diff';
+import chalk from 'chalk';
 
 import NamedExports from './src/NamedExports';
 
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
+
+function printDiff(parts) {
+  return parts.forEach(part => {
+    const color = part.added ? 'green' : part.removed ? 'red' : 'grey'; // eslint-disable-line no-nested-ternary, max-len
+    process.stdout.write(chalk[color](part.value));
+  });
+}
 
 export function generateTest(transformName, transform, testName) {
   let name = transformName;
@@ -22,9 +31,9 @@ export function generateTest(transformName, transform, testName) {
 
     const output = transform({ path, source }, { jscodeshift }, { quote: 'single' });
 
-    t.is(output, expected);
+    t.is(output, expected, printDiff(diff.diffLines(expected, output)));
   }];
 }
 
-test(...generateTest('NamedExports', NamedExports, 'with-default-export'));
-test(...generateTest('NamedExports', NamedExports, 'default-export-function'));
+test.skip(...generateTest('NamedExports', NamedExports, 'with-default-export'));
+test.skip(...generateTest('NamedExports', NamedExports, 'default-export-function'));
