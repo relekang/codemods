@@ -7,6 +7,7 @@ import chalk from 'chalk';
 
 import NamedExports from './src/NamedExports';
 import RemoveMicroComponentCreator from './src/RemoveMicroComponentCreator';
+import RemovePaddedBlocks from './src/RemovePaddedBlocks';
 
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
@@ -39,3 +40,4 @@ export function generateTest(transformName, transform, testName) {
 test(...generateTest('NamedExports', NamedExports, 'with-default-export'));
 test(...generateTest('NamedExports', NamedExports, 'default-export-function'));
 test(...generateTest('RemoveMicroComponentCreator', RemoveMicroComponentCreator));
+test(...generateTest('RemovePaddedBlocks', RemovePaddedBlocks));
