@@ -35,5 +35,5 @@ export function generateTest(transformName, transform, testName) {
   }];
 }
 
-test.skip(...generateTest('NamedExports', NamedExports, 'with-default-export'));
+test(...generateTest('NamedExports', NamedExports, 'with-default-export'));
 test.skip(...generateTest('NamedExports', NamedExports, 'default-export-function'));

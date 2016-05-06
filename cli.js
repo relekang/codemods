@@ -14,6 +14,10 @@ const argv = require('nomnom')
       metavar: 'FILE',
       required: true,
     },
+    ignorePattern: {
+      full: 'ignore',
+      list: true,
+    },
   })
   .parse();
 

@@ -29,7 +29,11 @@ function replace(type, j, node) {
         ])
       );
 
+    case 'BinaryExpression':
     case 'CallExpression':
+    case 'ObjectExpression':
+    case 'ArrayExpression':
+    case 'Identifier':
       return j.exportNamedDeclaration(
         j.variableDeclaration('const', [
           j.variableDeclarator(
