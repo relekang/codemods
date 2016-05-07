@@ -25,7 +25,7 @@
     "chai": "3.5.0",
     "diff": "^2.2.2",
     "eslint": "2.9.0",
-    "eslint-config-airbnb-base": "2.0.0",
+    "eslint-config-airbnb-base": "3.0.0",
     "eslint-plugin-import": "1.7.0"
   },
   "scripts": {
