@@ -26,7 +26,7 @@
     "diff": "^2.2.2",
     "eslint": "2.9.0",
     "eslint-config-airbnb-base": "3.0.1",
-    "eslint-plugin-import": "1.7.0"
+    "eslint-plugin-import": "1.8.0"
   },
   "scripts": {
     "test": "ava --verbose",
