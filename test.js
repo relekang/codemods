@@ -7,6 +7,7 @@ import chalk from 'chalk';
 
 import NamedExports from './src/NamedExports';
 import RemoveMicroComponentCreator from './src/RemoveMicroComponentCreator';
+import SpecificLodashImport from './src/SpecificLodashImport';
 
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
@@ -32,10 +33,12 @@ export function generateTest(transformName, transform, testName) {
 
     const output = transform({ path, source }, { jscodeshift }, { quote: 'single' });
 
-    t.is(output, expected, printDiff(diff.diffLines(expected, output)));
+    t.is(output, expected, getDiff(diff.diffLines(expected, output)));
   }];
 }
 
 test(...generateTest('NamedExports', NamedExports, 'with-default-export'));
 test(...generateTest('NamedExports', NamedExports, 'default-export-function'));
 test(...generateTest('RemoveMicroComponentCreator', RemoveMicroComponentCreator));
+test(...generateTest('SpecificLodashImport', SpecificLodashImport, 'with-chain'));
+test(...generateTest('SpecificLodashImport', SpecificLodashImport, 'without-chain'));

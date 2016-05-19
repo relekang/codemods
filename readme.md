@@ -24,3 +24,19 @@ To:
 ```es6
 export const answer = 42
 ```
+
+#### `SpecificLodashImport`
+
+From:
+```es6
+import _ from "lodash"
+
+_.map(items, item => console.log(item))
+```
+
+To:
+```es6
+import {map} from "lodash"
+
+map(items, item => console.log(item))
+```
