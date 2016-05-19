@@ -11,11 +11,11 @@ import RemoveMicroComponentCreator from './src/RemoveMicroComponentCreator';
 const readFile = Promise.promisify(fs.readFile);
 const fixturesPath = join(__dirname, 'test-fixtures');
 
-function printDiff(parts) {
-  return parts.forEach(part => {
+function getDiff(parts) {
+  return parts.map(part => {
     const color = part.added ? 'green' : part.removed ? 'red' : 'grey'; // eslint-disable-line no-nested-ternary, max-len
-    process.stdout.write(chalk[color](part.value));
-  });
+    return chalk[color](part.value);
+  }).join('  ');
 }
 
 export function generateTest(transformName, transform, testName) {
