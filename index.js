@@ -7,5 +7,5 @@ const { resolve } = require('path');
 module.exports = args => {
   console.log(chalk.green(chalk.bold(`Transforming using '${args.transform}' ✌`)));
   const options = Object.assign({ quote: 'single' }, omit(args, ['_', 'transform', 'path']));
-  Runner.run(resolve(__dirname, `./src/${args.transform}.js`), args.path, options);
+  Runner.run(resolve(__dirname, `./${args.transform}/index.js`), args.path, options);
 };
