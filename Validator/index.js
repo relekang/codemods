@@ -146,7 +146,7 @@ module.exports = function transformer(file, api) {
   function replaceValidateFunction(node) {
     return j.callExpression(node.callee, [
       j.callExpression(
-        j.memberExpression(j.thisExpression(), j.identifier('getVisibleFields')),
+        j.memberExpression(j.thisExpression(), j.identifier('getFieldsToValidate')),
         []
       ),
       j.callExpression(
