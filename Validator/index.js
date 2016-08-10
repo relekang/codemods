@@ -107,6 +107,10 @@ module.exports = function transformer(file, api) {
           removalProperty.push(p);
           return p;
 
+        case 'allowBlank':
+          removalProperty.push(p);
+          return p;
+
         default:
           return p;
       }
